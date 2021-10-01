@@ -1,0 +1,166 @@
+; this code should work when macro changes, expr multiplication, # and $
+; are implemented
+
+; $ is equal to the current address (can be simulated via labels + exprs)
+
+
+; arguments to routines may be overwritten
+
+
+; stack pointer is unbounded and not checked, keeping it from overwriting data
+; is the coder's responsibility
+
+{stack_start: (256 ^ # / 2 - 1)} ; largest positive number in word size, ^ is pow
+{stack_pointer: stack_start}
+
+[jump location: ; used to always branch to location
+	{macro_data: 0}
+
+	macro_data macro_data location
+]
+
+[set_zero location:
+	location location >
+]
+
+[set value location: ; value -> location
+	{macro_data: (0 - value)}
+
+	[set_zero location]
+	macro_data location >
+]
+
+[copy a location: ; store the value pointed to by a at location
+	{macro_data: 0}
+
+	[set_zero location]
+	a macro_data >
+	macro_data location >
+]
+
+[equ a b location:	; branch if a and b are equal
+	{macro_data: 0}
+	[copy a macro_data]
+
+	b a macro_skip
+	b b macro_end ; slightly more effecient than [jump macro_end]
+
+	macro_skip:
+
+	macro_data b location
+
+	macro_end:
+]
+
+[add a b:
+	{macro_data: 0}
+
+	b macro_data >
+	macro_data a >
+	[copy a b]
+]
+
+[inc a:
+	{macro_data: 1}
+
+	[add macro_data a]
+]
+
+[dec a:
+	{macro_data: 1}
+
+	macro_data a >
+]
+
+[mul a b:
+	{macro_data: 0 1}
+
+	macro_loop:
+	[add a macro_data]
+	(macro_data + #) b macro_end_loop ; b - 1
+	[jump macro_loop] ; unconditionally loop
+	macro_end_loop:
+
+	[copy (macro_data - # * 2) b]
+]
+
+[div a b:
+	{macro_data: 0 1}
+
+	macro_loop:
+	[add (macro_data + #) macro_data]
+	b a macro_end_loop
+	[jump macro_loop] ; unconditionally loop
+	macro_end_loop:
+
+	[copy macro_data b]
+]
+
+[mod a b:
+	macro_loop:
+	b a macro_loop
+
+	[copy a b]
+]
+
+[shl a b location:
+	{macro_data: 2 1}
+
+	macro_loop:
+	[div macro_data a]
+	(macro_data + #) b macro_end ; b - 1
+	[jump macro_loop] ; unconditionally loop
+	macro_end:
+	[copy a b]
+]
+
+[shr a b:
+	{macro_data: 2 1}
+
+	macro_loop:
+	[mul macro_data a]
+	(macro_data + #) b macro_end ; b - 1
+	[jump macro_loop] ; unconditionally loop
+	macro_end:
+	[copy a b]
+]
+
+[not a location:
+	[set -1 location]
+
+	a location >
+]
+
+[and a b location: ; TODO: MAKE THIS
+
+]
+
+[deref location:
+	{macro_data: 0}
+
+	[copy location macro_data]
+	[set_zero location]
+	0 macro_data >
+	macro_data location >
+]
+
+[push value:
+	# stack_pointer >
+	[set value stack_pointer]
+]
+
+[pop location:
+	[copy stack_pointer location]
+	[add # stack_pointer]
+]
+
+[call location args: ; TODO: arguments
+	[push $]
+	[jump location]
+]
+
+[ret:
+	{macro_data: 0}
+	[pop macro_data]
+	[jump macro_data]
+]
