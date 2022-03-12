@@ -1,0 +1,101 @@
+!guard stdminuend
+
+; standard io for the minuend subleq emulator
+
+!include stdfunc.msl
+
+!define MM_QUIT 0xFFFF
+!define MM_PUT 0xFFFE
+!define MM_GET 0xFFFD
+
+!define MM_PUT_DATA 0xFF00
+!define MM_GET_DATA 0xFF01
+
+{linefeed: 10}
+
+[bgetchar macro_dest: ; blocking getchar
+	macro_loop:
+	zero MM_GET macro_loop
+	
+	[getchar macro_dest]
+]
+
+[getchar macro_dest:
+	zero MM_GET macro_skip
+	[copy MM_GET_DATA macro_dest]
+	MM_GET MM_GET >
+	macro_skip:
+]
+
+[egetchar macro_dest: ; echo
+	zero MM_GET macro_skip
+	[copy MM_GET_DATA macro_dest]
+	MM_GET MM_GET >
+	[geq MM_GET_DATA max_byte macro_skip]
+	[putchar MM_GET_DATA]
+	macro_skip:
+]
+
+[begetchar macro_dest: ; echo
+	macro_loop:
+	zero MM_GET macro_loop
+	[copy MM_GET_DATA macro_dest]
+	MM_GET MM_GET >
+	[geq MM_GET_DATA max_byte macro_skip]
+	[putchar MM_GET_DATA]
+	macro_skip:
+]
+
+[putchar macro_src:
+	[copy macro_src MM_PUT_DATA]
+	MM_PUT MM_PUT >
+]
+
+[putstr macro_src: ; src contains a pointer to null-terminated string
+	{macro_char_contents: 0}
+
+	macro_loop:
+	[deref macro_src macro_char_contents]
+	zero macro_char_contents macro_skip
+	[putchar macro_char_contents]
+	n_one macro_src >
+	[jump macro_loop]
+	
+	macro_skip:	
+]
+
+; macro_maxsize must be greater than 0
+; macro_maxsize is the size of the input, a 0 will be appended to the end
+[egetln macro_dest macro_maxsize: ; reads into address dest points to until newline or maxsize is reached
+	{macro_char_contents: 0}
+	{macro_current_size: 0}
+
+	macro_loop:
+	[begetchar macro_dest]
+	[deref macro_dest macro_char_contents]
+	n_one macro_dest >
+	[geq macro_char_contents max_byte macro_loop] ; skip control characters
+	[equ macro_char_contents linefeed macro_skip]
+	[leq current_size maxsize macro_loop]
+	
+	macro_skip:
+	macro_dest macro_dest > ; add null terminator
+]
+
+[getln macro_dest macro_maxsize: ; reads into address dest points to until newline or maxsize is reached
+	{macro_char_contents: 0}
+	{macro_current_size: 0}
+
+	macro_loop:
+	[begetchar macro_dest]
+	[deref macro_dest macro_char_contents]
+	n_one macro_dest >
+	[geq macro_char_contents max_byte macro_loop] ; skip control characters
+	[equ macro_char_contents linefeed macro_skip]
+	[leq current_size maxsize macro_loop]
+	
+	macro_skip:
+	macro_dest macro_dest > ; add null terminator
+]
+
+!endguard

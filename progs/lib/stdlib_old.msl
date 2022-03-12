@@ -135,12 +135,12 @@
 
 ]
 
-[deref location:
-	{macro_data: 0}
+[deref location: ; this does not work
+	{macro_data: 0 0}
 
 	[copy location macro_data]
 	[set_zero location]
-	0 macro_data >
+	(macro_data + 1) macro_data >
 	macro_data location >
 ]
 

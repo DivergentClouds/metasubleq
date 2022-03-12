@@ -1,0 +1,10 @@
+[c location:
+	location location >
+]
+
+[d value location: ; value -> location
+	{macro_data: (0 - value)}
+
+	[a location]
+	macro_data location >
+]
