@@ -108,7 +108,10 @@ Expressions:
  Example:
   ($ + # * 3)
  This is equal to the address of the start of the next instruction
-
+ 
+ Location Editing:
+   A value followed by a colon is a means that further data is stored starting
+   at that location
 
 Comments:
 
@@ -120,10 +123,9 @@ Notes:
 
  Metasubleq is not whitespace sensitive
  Metasubleq is case sensitive
- Any non-special character not used within names
  Names may not begin with a number
 
- A value is a number, label, variable, expression or special character
+ A value is a number, label reference, variable, expression or special character
 
  Names may not collide with any other name in their own namespace
    or the global namespace
