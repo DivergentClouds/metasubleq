@@ -119,6 +119,19 @@ Comments:
  Block comments do not exist
 
 
+Includes:
+
+ Additional files may be included via the !include command
+ For example:
+  !include name path/to/file.msl
+ 
+ Macros from that file can then be accessed as name.macro
+ This can be done recursively if an included file includes another file
+ For example:
+  name1.name2.macro
+
+ Names may not conflict
+
 Notes:
 
  Metasubleq is not whitespace sensitive
