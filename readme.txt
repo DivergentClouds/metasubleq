@@ -123,13 +123,13 @@ Notes:
 
  Metasubleq is not whitespace sensitive
  Metasubleq is case sensitive
- Names may not begin with a number
+ Names are of the form [_a-zA-Z][_a-zA-Z0-9]
 
  A value is a number, label reference, variable, expression or special character
 
  Names may not collide with any other name in their own namespace
    or the global namespace
- Macro are part of the global namespace
+ Macros are part of the global namespace
  Parameters are part of the namespace of the relevant macro
  Variables are part of the namespace they were defined in
  Label names are part of the namespace they were defined in
