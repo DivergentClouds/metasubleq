@@ -126,10 +126,8 @@ Includes:
   !include name path/to/file
  
  Macros from that file can then be accessed as name.macro
- This can be done recursively if an included file includes another file
- For example:
-  name1.name2.macro
-
+ 
+ Includes may not be accessed directly outside of the file that included them
  Names may not conflict
 
 Notes:
