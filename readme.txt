@@ -123,7 +123,7 @@ Includes:
 
  Additional files may be included via the !include command
  For example:
-  !include name path/to/file.msl
+  !include name path/to/file
  
  Macros from that file can then be accessed as name.macro
  This can be done recursively if an included file includes another file
