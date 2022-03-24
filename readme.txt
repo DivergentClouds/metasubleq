@@ -28,9 +28,9 @@ Subleq:
 Macros:
 
  Square brackets indicate a macro
- A colon after the parameters indicates macro definition
+ A colon before the name and after the parameters indicates macro definition
  A macro may take an arbitary number of arguments
- The format for defining a macro is [name param1 param2: code]
+ The format for defining a macro is [:name param1 param2: code]
  To access an argument use its name in the code section
 
  The format for using a macro is [name arg1 arg2]
