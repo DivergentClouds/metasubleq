@@ -48,7 +48,7 @@ Labels:
  To define a label type the label name followed by a colon
  For example:
    name:
- Referencing a label is done by using it's name
+ Referencing the address of a label is done by using its name
  For example:
   name
 
@@ -61,7 +61,7 @@ Variables:
  For example:
    {name: value1 value2 ...}
 
- To access the address of a variable us its name
+ Referencing the address of a variable is done by using its name
  Variables may only be accessed within the namespace they were defined in
 
 
@@ -137,7 +137,7 @@ Includes:
 
 Notes:
 
- Metasubleq is not whitespace sensitive
+ Metasubleq is not sensitive to additional whitespa
  Metasubleq is case sensitive
  Names are of the form [_a-zA-Z][_a-zA-Z0-9]
 
