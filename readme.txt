@@ -81,6 +81,7 @@ Special Characters:
 
 
 Expressions:
+
  Expressions are compiletime mathematical operations
  Expressions are contained within parentheses
 
@@ -94,6 +95,7 @@ Expressions:
  Expressions may contain any value
 
  Valid operations are:
+
    ^
      Exponentiation
    *
@@ -106,10 +108,12 @@ Expressions:
      Subtraction
 
  Example:
+
    ($ + # * 3)
    This is equal to the address of the start of the next instruction
  
 Location Editing:
+
  A (non-label) value followed by a colon means that further code and data is
  stored starting at that location
 
