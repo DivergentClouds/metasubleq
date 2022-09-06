@@ -28,9 +28,9 @@ Subleq:
 Macros:
 
  Square brackets indicate a macro
- A colon before the name and after the parameters indicates macro definition
+ A colon after the parameters indicates macro definition
  A macro may take an arbitary number of arguments
- The format for defining a macro is [:name param1 param2: code]
+ The format for defining a macro is [name param1 param2: code]
  To access an argument use its name in the code section
 
  The format for using a macro is [name arg1 arg2]
@@ -54,8 +54,8 @@ Labels:
 
 Variables:
 
- Variables are a special case of label that are defined in curly 
- Variables are stored in memory after the code
+ Variables are a special case of label that are defined in curly brackets
+ Variables are stored in memory directly after code
  Variable take the form of a name followed by a colon followed by 1 or more
    values
  For example:
@@ -129,7 +129,8 @@ Includes:
  For example:
   !include name path/to/file
  
- Macros from that file can then be accessed as name.macro
+ Macros and global variables from that file can then be accessed as name.macro
+ or name.variable
  
  Includes may not be accessed directly outside of the file that included them
  Names may not conflict
