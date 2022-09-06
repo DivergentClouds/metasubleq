@@ -106,12 +106,12 @@ Expressions:
      Subtraction
 
  Example:
-  ($ + # * 3)
- This is equal to the address of the start of the next instruction
+   ($ + # * 3)
+   This is equal to the address of the start of the next instruction
  
- Location Editing:
-   A value followed by a colon is a means that further data is stored starting
-   at that location
+Location Editing:
+ A (non-label) value followed by a colon means that further code and data is
+ stored starting at that location
 
 Comments:
 
