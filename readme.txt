@@ -56,7 +56,7 @@ Variables:
 
  Variables are a special case of label that are defined in curly brackets
  Variables are stored in memory directly after code
- Variable take the form of a name followed by a colon followed by 1 or more
+ Variables take the form of a name followed by a colon followed by 1 or more
    values
  For example:
    {name: value1 value2 ...}
