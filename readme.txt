@@ -109,12 +109,13 @@ Expressions:
 
  Example:
 
-   ($ + # * 3)
-   This is equal to the address of the start of the next instruction
+   (> + # * 3)
+   This is equal to the address of the start of the instruction after the next
+   instruction
  
 Location Editing:
 
- A (non-label) value followed by a colon means that further code and data is
+ An expression or character followed by a colon means that further code is
  stored starting at that location
 
 Comments:
