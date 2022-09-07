@@ -70,7 +70,7 @@ Special Characters:
  #
    Word size in bytes
 
- ,
+ .
    The location of the start of the current instruction in memory
 
  >
@@ -119,25 +119,25 @@ Location Editing:
 
 Comments:
 
- Line comments are started by a semicolon
- Block comments do not exist
+ Comments are started by a semicolon and last until the end of the line
 
+Imports:
 
-Includes:
-
- Additional files may be included via the !include command
+ Additional files may be imported via the ! symbol at the start of a line
  For example:
-  !include name path/to/file
+   !name path/to/file
+
+ Anything after the name on that line is counted as part of the file path
+
+ Macros and global variables from that file can then be accessed as name!macro
+ or name!variable
  
- Macros and global variables from that file can then be accessed as name.macro
- or name.variable
- 
- Includes may not be accessed directly outside of the file that included them
- Names may not conflict
+ Imports may not be accessed directly outside of the file that included them
 
 Notes:
 
- Metasubleq is not sensitive to additional whitespa
+ Metasubleq is not whitespace sensitive
+   (aside from imports and comments, see those sections for more details)
  Metasubleq is case sensitive
  Names are of the form [_a-zA-Z][_a-zA-Z0-9]
 
