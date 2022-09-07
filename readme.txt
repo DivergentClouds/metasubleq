@@ -70,7 +70,7 @@ Special Characters:
  #
    Word size in bytes
 
- $
+ .
    The location of the start of the current instruction in memory
 
  >
