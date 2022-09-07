@@ -30,10 +30,10 @@ Macros:
  Square brackets indicate a macro
  A colon after the parameters indicates macro definition
  A macro may take an arbitary number of arguments
- The format for defining a macro is [name param1 param2: code]
+ The format for defining a macro is [name param1 param2 ...: code]
  To access an argument use its name in the code section
 
- The format for using a macro is [name arg1 arg2]
+ The format for using a macro is [name arg1 arg2 ...]
 
  The content of a macro is in its own namespace
 
@@ -130,10 +130,10 @@ Imports:
 
  Anything after the name on that line is counted as part of the file path
 
- Macros and global variables from that file can then be accessed as name!macro
- or name!variable
+ Macros and global variables from that file can then be accessed as
+ [name!macro arg1 arg2 ...] or name!variable
  
- Imports may not be accessed directly outside of the file that included them
+ Imports may not be accessed outside of the file that imported them
 
 Notes:
 
