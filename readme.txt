@@ -140,7 +140,7 @@ Notes:
  Metasubleq is not whitespace sensitive
    (aside from imports and comments, see those sections for more details)
  Metasubleq is case sensitive
- Names are of the form [_a-zA-Z][_a-zA-Z0-9]
+ Names are of the form [_a-zA-Z][_a-zA-Z0-9]*
 
  A value is a number, label reference, variable, expression or special character
 
