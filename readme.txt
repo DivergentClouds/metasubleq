@@ -63,6 +63,8 @@ Variables:
 
  Referencing the address of a variable is done by using its name
  Variables may only be accessed within the namespace they were defined in
+ Variables may be overwritten from within the namespace in which they were
+   defined
 
 
 Special Characters:
@@ -115,7 +117,7 @@ Expressions:
  
 Location Editing:
 
- An expression or character followed by a colon means that further code is
+ An expression or number followed by a colon means that further code is
  stored starting at that location
 
 Comments:
@@ -146,6 +148,7 @@ Notes:
 
  Names may not collide with any other name in their own namespace
    or the global namespace
+   (aside from variable redefinition)
  Macros are part of the global namespace
  Parameters are part of the namespace of the relevant macro
  Variables are part of the namespace they were defined in
