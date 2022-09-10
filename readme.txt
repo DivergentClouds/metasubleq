@@ -139,8 +139,8 @@ Imports:
 
 Notes:
 
- Metasubleq is not whitespace sensitive
-   (aside from imports and comments, see those sections for more details)
+ Metasubleq is mostly whitespace insensitive
+   Imports and comments last until the end of a line and tabs are not allowed
  Metasubleq is case sensitive
  Names are of the form [_a-zA-Z][_a-zA-Z0-9]*
 
